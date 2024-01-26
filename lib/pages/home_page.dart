@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
                   child: TextFormField(
                     validator: validator,
                     controller: _cepController,
+                    keyboardType: TextInputType.number,
                     onTapOutside: (event) => FocusScope.of(context).unfocus(),
                     decoration: const InputDecoration(
                       hintText: 'Digite o CEP',
