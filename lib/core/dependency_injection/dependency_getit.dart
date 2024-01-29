@@ -8,10 +8,7 @@ final getIt = GetIt.instance;
 
 void setup() {
   getIt.registerLazySingleton<IRestClient>(() => DioRestClientImpl());
-  getIt.registerLazySingleton<IRepositoryCEP>(
-      () => RepositoryCEPImpl(restClient: getIt<IRestClient>()));
-  getIt.registerLazySingleton<ServiceCEP>(
-      () => ServiceCEPImpl(repositoryCEP: getIt<IRepositoryCEP>()));
-  getIt.registerFactory<CepCubit>(
-      () => CepCubit(serviceCEP: getIt<ServiceCEP>()));
+  getIt.registerLazySingleton<IRepositoryCEP>(() => RepositoryCEPImpl());
+  getIt.registerLazySingleton<ServiceCEP>(() => ServiceCEPImpl());
+  getIt.registerFactory<CepCubit>(() => CepCubit());
 }

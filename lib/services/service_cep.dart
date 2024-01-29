@@ -1,3 +1,4 @@
+import 'package:via_cep/core/dependency_injection/dependency_getit.dart';
 import 'package:via_cep/model/model_cep.dart';
 import 'package:via_cep/repositories/repository_cep.dart';
 
@@ -6,9 +7,8 @@ abstract interface class ServiceCEP {
 }
 
 class ServiceCEPImpl implements ServiceCEP {
-  final IRepositoryCEP repositoryCEP;
+  final repositoryCEP = getIt<IRepositoryCEP>();
 
-  ServiceCEPImpl({required this.repositoryCEP});
   @override
   Future<ModelCEP> getCEP({required String cep}) async =>
       await repositoryCEP.getCEP(cep: cep);

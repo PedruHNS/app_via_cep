@@ -1,3 +1,4 @@
+import 'package:via_cep/core/dependency_injection/dependency_getit.dart';
 import 'package:via_cep/core/rest_client/rest_client.dart';
 import 'package:via_cep/model/model_cep.dart';
 
@@ -6,9 +7,8 @@ abstract interface class IRepositoryCEP {
 }
 
 class RepositoryCEPImpl implements IRepositoryCEP {
-  final IRestClient restClient;
+  final restClient = getIt<IRestClient>();
 
-  RepositoryCEPImpl({required this.restClient});
   @override
   Future<ModelCEP> getCEP({required String cep}) async {
     try {

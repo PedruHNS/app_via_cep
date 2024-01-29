@@ -1,17 +1,18 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:via_cep/core/dependency_injection/dependency_getit.dart';
 import 'package:via_cep/model/model_cep.dart';
 import 'package:via_cep/services/service_cep.dart';
 
 part 'cep_state.dart';
 
 class CepCubit extends Cubit<CepState> {
-  final ServiceCEP serviceCEP;
-  CepCubit({required this.serviceCEP}) : super(const CepInitial(null));
+  final serviceCEP = getIt<ServiceCEP>();
+  CepCubit() : super(const CepInitial(null));
 
   Future<void> fetchCEP({required String cep}) async {
+    emit(const CepInitial(null));
     try {
-      emit(const CepInitial(null));
       emit(const CepLoading(null));
       final infoCEP = await serviceCEP.getCEP(cep: cep);
       emit(CepSuccess(infoCEP));
