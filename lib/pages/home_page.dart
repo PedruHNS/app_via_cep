@@ -82,6 +82,7 @@ class _HomePageState extends State<HomePage> {
                           color: Theme.of(context).colorScheme.secondary),
                       CepError() => const Center(
                           child: Text('erro no cep'),
+                          
                         )
                     };
                   },
