@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:via_cep/core/dependency_injection/dependency_getit.dart';
+
 import 'package:via_cep/pages/cubit/cep_cubit.dart';
 import 'package:via_cep/pages/infos_widget.dart';
 
@@ -64,7 +64,11 @@ class _HomePageState extends State<HomePage> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formkey.currentState!.validate()) {
-                        getIt<CepCubit>().fetchCEP(cep: _cepController.text);
+                        //!porque não funciona? getIt<CepCubit>().fetchCEP(cep: _cepController.text);
+
+                        context
+                            .read<CepCubit>()
+                            .fetchCEP(cep: _cepController.text);
                       }
                     },
                     child: const Text('Buscar'),
@@ -81,8 +85,7 @@ class _HomePageState extends State<HomePage> {
                       CepLoading() => CircularProgressIndicator(
                           color: Theme.of(context).colorScheme.secondary),
                       CepError() => const Center(
-                          child: Text('erro no cep'),
-                          
+                          child: Text('error'),
                         )
                     };
                   },

@@ -7,8 +7,22 @@ import 'package:via_cep/services/service_cep.dart';
 final getIt = GetIt.instance;
 
 void setup() {
-  getIt.registerLazySingleton<IRestClient>(() => DioRestClientImpl());
-  getIt.registerLazySingleton<IRepositoryCEP>(() => RepositoryCEPImpl());
-  getIt.registerLazySingleton<ServiceCEP>(() => ServiceCEPImpl());
-  getIt.registerFactory<CepCubit>(() => CepCubit());
+  getIt.registerLazySingleton<IRestClient>(
+    () => DioRestClientImpl(),
+  );
+  getIt.registerLazySingleton<IRepositoryCEP>(
+    () => RepositoryCEPImpl(
+      restClient: getIt<IRestClient>(),
+    ),
+  );
+  getIt.registerLazySingleton<ServiceCEP>(
+    () => ServiceCEPImpl(
+      repositoryCEP: getIt<IRepositoryCEP>(),
+    ),
+  );
+  getIt.registerFactory<CepCubit>(
+    () => CepCubit(
+      getIt<ServiceCEP>(),
+    ),
+  );
 }
