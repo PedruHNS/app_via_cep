@@ -20,12 +20,12 @@ class ModelCEP {
   });
 
   // factory ModelCEP.fromJson(Map<String, dynamic> json) {
-  //   return ModelCep(
+  //   return ModelCEP(
   //     cep: json['cep'] ?? '',
   //     logradouro: json['logradouro'] ?? '',
   //     complemento: json['complemento'] ?? '',
   //     bairro: json['bairro'] ?? '',
-  //     localidade: json['localidade'] ?? '' ,
+  //     localidade: json['localidade'] ?? '',
   //     uf: json['uf'] ?? '',
   //     ddd: json['ddd'] ?? '',
   //   );
@@ -51,7 +51,7 @@ class ModelCEP {
           uf: uf,
           ddd: ddd,
         ),
-      _ => throw ArgumentError('Invalid Json'),
+      _ => throw Exception('Invalid Json'),
     };
   }
 }

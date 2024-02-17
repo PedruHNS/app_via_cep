@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
+
 import 'package:equatable/equatable.dart';
 
 import 'package:via_cep/model/model_cep.dart';
@@ -19,9 +19,7 @@ class CepCubit extends Cubit<CepState> {
       emit(const CepLoading(null));
       final infoCEP = await serviceCEP.getCEP(cep: cep);
       emit(CepSuccess(infoCEP));
-      return;
     } on Exception catch (e) {
-      log(e.toString());
       emit(CepError(null, message: e.toString()));
     }
   }

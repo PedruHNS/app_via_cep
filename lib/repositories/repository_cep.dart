@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:via_cep/core/rest_client/rest_client.dart';
 import 'package:via_cep/model/model_cep.dart';
 
@@ -19,6 +18,7 @@ class RepositoryCEPImpl implements IRepositoryCEP {
       final response = await restClient.getCEP(url: url);
 
       final infoCEP = ModelCEP.fromMap(response);
+
       return infoCEP;
     } on Exception catch (e) {
       throw Exception(e);
